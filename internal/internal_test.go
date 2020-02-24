@@ -3,12 +3,47 @@ package internal_test
 import (
 	"github.com/Thiamath/y2dwdatt/internal"
 	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/gomega"
 )
 
-var _ = Describe("Internal", func() {
+var _ = Describe("Internal package", func() {
 	Context("Tax service", func() {
 		taxService := internal.TaxService{}
-		It(`Should be able to process alpha input`, func() {
+		It(`Should be able to process input:
+1 book at 12.49
+1 music CD at 14.99
+1 chocolate bar at 0.85`, func() {
+			// Given input alpha
+			// When passing through the taxes service
+			output, err := taxService.Process(inputAlpha)
+			// Then should not be errors
+			Expect(err).To(BeNil())
+			// And the output must be alpha output
+			Expect(output).To(Equal(outputAlpha))
+		})
+		It(`Should be able to process input:
+1 imported box of chocolates at 10.00
+1 imported bottle of perfume at 47.50`, func() {
+			// Given input beta
+			// When passing through the taxes service
+			output, err := taxService.Process(inputBeta)
+			// Then should not be errors
+			Expect(err).To(BeNil())
+			// And the output must be beta output
+			Expect(output).To(Equal(outputBeta))
+		})
+		It(`Should be able to process input:
+1 imported bottle of perfume at 27.99
+1 bottle of perfume at 18.99
+1 packet of headache pills at 9.75
+1 box of imported chocolates at 11.25`, func() {
+			// Given input gamma
+			// When passing through the taxes service
+			output, err := taxService.Process(inputGamma)
+			// Then should not be errors
+			Expect(err).To(BeNil())
+			// And the output must be gamma output
+			Expect(output).To(Equal(outputGamma))
 		})
 	})
 })
