@@ -1,4 +1,4 @@
-package internal_test
+package app_test
 
 import (
 	"testing"
@@ -9,5 +9,5 @@ import (
 
 func TestInternal(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Internal Suite")
+	RunSpecs(t, "App Suite")
 }

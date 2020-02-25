@@ -1,15 +1,15 @@
-package internal_test
+package app_test
 
 import (
-	"github.com/Thiamath/y2dwdatt/internal"
+	"github.com/Thiamath/y2dwdatt/app"
 	"github.com/Thiamath/y2dwdatt/pkg/external/item_service"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
 
-var _ = Describe("Internal package", func() {
+var _ = Describe("App package", func() {
 	Context("Tax service", func() {
-		taxService := internal.NewTaxService(ItemServiceMock)
+		taxService := app.NewTaxService(ItemServiceMock)
 		It(`Should be able to process input:
 1 book at 12.49
 1 music CD at 14.99
