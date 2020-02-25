@@ -10,6 +10,7 @@ import (
 
 const ImportedString = "imported"
 
+// TaxService represents the Tax Service class.
 type TaxService struct {
 	ItemService *item_service.Service
 
@@ -18,6 +19,7 @@ type TaxService struct {
 	ExemptItems []item_service.ItemLabel
 }
 
+// NewTaxService creates a tax service instance with default tax values.
 func NewTaxService(itemService *item_service.Service) *TaxService {
 	return &TaxService{
 		ItemService: itemService,
@@ -31,6 +33,7 @@ func NewTaxService(itemService *item_service.Service) *TaxService {
 	}
 }
 
+// Process an input and returns the processed output with taxes and total.
 func (t *TaxService) Process(input string) (string, error) {
 	lines := strings.Split(input, "\n")
 	outputLines := make([]string, 0, len(lines)+2)
@@ -87,10 +90,9 @@ func (t *TaxService) Process(input string) (string, error) {
 
 func (t *TaxService) roundUpTo005(lineTax float64) float64 {
 	fmod := math.Mod(lineTax, .05)
-	//if fmod >= .025 {
-	lineTax += .05 - fmod
-	//}
-	//lineTax -= fmod
+	if fmod > 0 {
+		lineTax += .05 - fmod
+	}
 	return lineTax
 }
 
